@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Portfolio of a DevOps / Mobile App Developer" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="font-inter bg-[#f4f4f4] text-[#111111] antialiased">
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--accent: 85, 107, 240; /* matches the blue button */
+	}
+	html {
+		font-family: 'Inter', sans-serif;
+		scroll-behavior: smooth;
+	}
+	body {
+		margin: 0;
+	}
+</style>
