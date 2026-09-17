@@ -1,0 +1,138 @@
+---
+// src/components/Testimonials.astro — Creative Testimonials Section
+const testimonials = [
+  {
+    quote: "Mohit transformed our deployment architecture completely. What used to take hours of manual work is now fully automated and rock-solid.",
+    author: "Alex Rivera",
+    role: "VP of Engineering",
+    company: "CloudScale Inc.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+    metric: "99.99% Uptime Achieved"
+  },
+  {
+    quote: "An exceptional developer who understands both frontend experience and heavy backend scalability. Delivered our mobile app 2 weeks ahead of schedule.",
+    author: "Sarah Chen",
+    role: "Head of Product",
+    company: "FinTech Global",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+    metric: "2x App Performance"
+  },
+  {
+    quote: "Working with Mohit was a game changer. His mastery over Kubernetes and CI/CD pipelines cut our infrastructure costs by 40% in just 3 months.",
+    author: "Marcus Vance",
+    role: "CTO & Co-Founder",
+    company: "Nexus Systems",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+    metric: "40% Cost Reduction"
+  }
+];
+---
+
+<section id="testimonials" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <div>
+        <span class="text-sm font-medium text-white/40 uppercase tracking-widest block mb-3">Client Feedback</span>
+        <h2 class="testi-heading text-5xl md:text-7xl font-bold tracking-tighter leading-none">
+          What leaders say
+        </h2>
+      </div>
+      <p class="text-white/40 max-w-sm text-base leading-relaxed">
+        Trusted by engineering leaders, product founders, and CTOs to deliver mission-critical software.
+      </p>
+    </div>
+
+    <!-- Testimonials Creative Grid -->
+    <div class="testimonials-grid grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+      {testimonials.map((item, index) => (
+        <div class="testi-card group relative bg-[#111] border border-white/[0.08] rounded-3xl p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-500 hover:-translate-y-2">
+          
+          <!-- Background Subtle Number -->
+          <div class="absolute top-6 right-8 text-7xl font-black text-white/[0.03] select-none pointer-events-none font-mono">
+            0{index + 1}
+          </div>
+
+          <div>
+            <!-- Top Rating & Metric Badge -->
+            <div class="flex items-center justify-between mb-8">
+              <div class="flex gap-1 text-amber-400">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+              <span class="px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full text-xs font-mono text-white/70">
+                {item.metric}
+              </span>
+            </div>
+
+            <!-- Quote Text -->
+            <p class="text-lg md:text-xl text-white/80 leading-relaxed font-light mb-10 italic">
+              "{item.quote}"
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="flex items-center gap-4 pt-6 border-t border-white/[0.06]">
+            <img 
+              src={item.avatar} 
+              alt={item.author} 
+              class="w-12 h-12 rounded-full object-cover border border-white/20"
+            />
+            <div>
+              <h4 class="text-base font-bold text-white leading-snug">{item.author}</h4>
+              <p class="text-xs text-white/50">{item.role} · <span class="text-white/70">{item.company}</span></p>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Heading reveal
+      gsap.from('.testi-heading', {
+        y: 30,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#testimonials',
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      });
+
+      // Cards staggered reveal
+      gsap.from('.testi-card', {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.testimonials-grid',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set('.testi-heading, .testi-card', { autoAlpha: 1, y: 0 });
+    });
+  });
+</script>

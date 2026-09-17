@@ -1,0 +1,137 @@
+---
+// src/components/Experience.astro — Dedicated highlighted timeline section
+const roles = [
+  {
+    year: "2024",
+    title: "Cloud Infrastructure Lead",
+    company: "Leading cloud architecture, infrastructure-as-code, and platform engineering for distributed systems.",
+    current: true,
+  },
+  {
+    year: "2023",
+    title: "Senior DevOps Engineer",
+    company: "Designed CI/CD pipelines, Kubernetes orchestration, and monitoring stacks serving millions of requests.",
+    current: false,
+  },
+  {
+    year: "2022",
+    title: "Mobile App Developer",
+    company: "Built cross-platform mobile applications with React Native and Flutter for fintech and e-commerce.",
+    current: false,
+  },
+  {
+    year: "2021",
+    title: "Full Stack Developer",
+    company: "Developed web applications with Node.js, TypeScript, and PostgreSQL from concept to production.",
+    current: false,
+  },
+];
+---
+
+<section id="experience" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden">
+  <!-- Accent line running the full height -->
+  <div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/[0.04] hidden lg:block"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <!-- Section heading -->
+    <div class="mb-24">
+      <h2 class="exp-heading text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-6">
+        Experience
+      </h2>
+      <p class="text-white/40 max-w-lg text-base leading-relaxed">
+        A journey through infrastructure, mobile development, and full-stack engineering.
+      </p>
+    </div>
+
+    <!-- Timeline entries -->
+    <div class="relative">
+      {roles.map((role, i) => (
+        <div class={`exp-entry flex flex-col lg:flex-row items-start gap-6 lg:gap-16 py-10 border-t border-white/[0.06] ${i === roles.length - 1 ? 'border-b border-white/[0.06]' : ''}`}>
+
+          <!-- Year -->
+          <div class="lg:w-48 shrink-0 flex items-center gap-3">
+            <span class={`text-4xl md:text-5xl font-black tracking-tighter ${role.current ? 'text-white' : 'text-white/25'}`}>
+              {role.year}
+            </span>
+            {role.current && (
+              <span class="px-3 py-1 bg-green-500/15 border border-green-500/20 rounded-full text-xs font-medium text-green-400">
+                Now
+              </span>
+            )}
+          </div>
+
+          <!-- Role details -->
+          <div class="flex-1 flex flex-col md:flex-row md:items-start md:justify-between gap-4 lg:gap-12">
+            <h3 class={`text-2xl md:text-3xl font-bold tracking-tight ${role.current ? 'text-white' : 'text-white/70'}`}>
+              {role.title}
+            </h3>
+            <p class="text-sm md:text-base text-white/40 leading-relaxed max-w-md md:text-right">
+              {role.company}
+            </p>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+      // Heading
+      gsap.from('.exp-heading', {
+        y: 25,
+        autoAlpha: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#experience',
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      });
+
+      // Timeline entries — staggered reveal
+      gsap.from('.exp-entry', {
+        y: 30,
+        autoAlpha: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#experience .relative',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+
+      // Each entry's year gets a subtle scale pop when it enters
+      document.querySelectorAll('.exp-entry').forEach(entry => {
+        const year = entry.querySelector('.text-4xl, .text-5xl');
+        if (year) {
+          ScrollTrigger.create({
+            trigger: entry,
+            start: 'top 80%',
+            onEnter: () => {
+              gsap.fromTo(year, { scale: 0.8 }, { scale: 1, duration: 0.5, ease: 'back.out(1.5)' });
+            },
+            once: true
+          });
+        }
+      });
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set('.exp-heading, .exp-entry', { autoAlpha: 1, y: 0 });
+    });
+  });
+</script>

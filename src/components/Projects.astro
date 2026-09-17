@@ -1,56 +1,242 @@
 ---
+// Projects.astro
 const projects = [
   {
     title: "CI/CD Pipeline Automation",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&q=80&w=800",
-    link: "#"
+    tech: ["AWS", "Docker", "Jenkins", "Terraform"],
+    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&q=80&w=1200"
   },
   {
     title: "FinTech Mobile App",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-    link: "#"
+    tech: ["React Native", "Node.js", "Stripe", "Firebase"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200"
   },
   {
-    title: "Cloud Infrastructure Setup",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
-    link: "#"
+    title: "Cloud Infrastructure",
+    tech: ["Kubernetes", "Terraform", "AWS", "Monitoring"],
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
   },
   {
-    title: "E-commerce iOS/Android App",
-    image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&q=80&w=800",
-    link: "#"
+    title: "E-commerce App",
+    tech: ["Flutter", "Firebase", "Stripe", "GraphQL"],
+    image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&q=80&w=1200"
   }
 ];
 ---
-<section id="projects" class="w-full px-8 py-24 md:px-16 bg-[#f4f4f4]">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-      <h2 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900">
-        Impressive Works
-      </h2>
-      <p class="max-w-sm text-sm text-gray-500 uppercase tracking-widest leading-relaxed">
-        Here's a selection of projects that showcase my passion for DevOps and mobile development, reflecting creativity and innovation.
-      </p>
+
+<section class="bg-[#0a0a0a] text-white relative overflow-hidden" id="projects">
+  <div class="container mx-auto px-6 pt-32 pb-16">
+    <h2 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter" id="projects-title">
+      Selected Work
+    </h2>
+  </div>
+
+  <div class="projects-wrapper h-screen relative" id="projects-wrapper">
+    <div class="progress-indicator absolute top-12 left-12 z-20 flex items-end font-mono text-2xl mix-blend-difference pointer-events-none">
+      <span class="current-project text-5xl font-bold leading-none">01</span>
+      <span class="text-gray-400 ml-2 mb-1">/ 0{projects.length}</span>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
-      {projects.map((project) => (
-        <div class="group cursor-pointer">
-          <div class="w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-gray-200">
-            <img src={project.image} alt={project.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
-          </div>
-          <div class="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-900 group-hover:text-blue-600 transition-colors"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>
-            <h3 class="text-xl font-medium text-gray-900">{project.title}</h3>
+    <div class="projects-container flex h-full w-[400vw]" id="projects-container">
+      {projects.map((project, index) => (
+        <div class="project-panel w-screen h-full flex flex-col justify-center items-center relative px-6 md:px-24 shrink-0">
+          
+          <div class="w-full max-w-7xl relative aspect-[16/9] md:aspect-[21/9] overflow-hidden group rounded-xl">
+            <div class="project-number absolute top-4 right-8 z-10 text-8xl md:text-[12rem] font-bold leading-none text-transparent mix-blend-overlay pointer-events-none" style="-webkit-text-stroke: 2px rgba(255,255,255,0.5);">
+              0{index + 1}
+            </div>
+            
+            <div class="image-parallax-container w-full h-full overflow-hidden">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                class="project-image w-full h-full object-cover origin-center scale-110"
+              />
+            </div>
+            
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700"></div>
+            
+            <div class="absolute bottom-8 left-8 md:bottom-16 md:left-16 z-20 max-w-3xl pointer-events-auto">
+              <h3 class="project-title text-4xl md:text-6xl font-bold mb-6 overflow-hidden">
+                <span class="block translate-y-full inline-block">{project.title}</span>
+              </h3>
+              
+              <div class="flex flex-wrap gap-3 mb-8">
+                {project.tech.map(tech => (
+                  <span class="project-tech opacity-0 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-medium tracking-wide border border-white/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              
+              <a href="#" class="view-project inline-flex items-center gap-2 text-lg font-bold uppercase tracking-wider group/link">
+                <span class="relative overflow-hidden block">
+                  <span class="block transition-transform duration-300 group-hover/link:-translate-y-full">View Project</span>
+                  <span class="block absolute inset-0 translate-y-full transition-transform duration-300 group-hover/link:translate-y-0 text-white/80">View Project</span>
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform duration-300 group-hover/link:translate-x-2 group-hover/link:-translate-y-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       ))}
     </div>
-
-    <div class="mt-16 flex justify-center">
-      <a href="#more-projects" class="px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:border-gray-900 transition-colors flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span> Explore more
-      </a>
-    </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if GSAP is available
+    if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+      console.warn('GSAP or ScrollTrigger not loaded on window.');
+      return;
+    }
+
+    const { gsap, ScrollTrigger } = window;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Animate Section Title
+      gsap.from("#projects-title", {
+        scrollTrigger: {
+          trigger: "#projects",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        y: 50,
+        autoAlpha: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      const wrapper = document.getElementById("projects-wrapper");
+      const container = document.getElementById("projects-container");
+      const panels = gsap.utils.toArray(".project-panel");
+      const currentProjectEl = document.querySelector(".current-project");
+      
+      if (!wrapper || !container || panels.length === 0) return;
+
+      const totalPanels = panels.length;
+
+      // Horizontal Scroll Tween
+      const scrollTween = gsap.to(panels, {
+        xPercent: -100 * (totalPanels - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapper,
+          pin: true,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / (totalPanels - 1),
+            duration: { min: 0.2, max: 0.6 },
+            delay: 0.1,
+            ease: "power2.inOut"
+          },
+          end: () => "+=" + container.offsetWidth,
+          onUpdate: (self) => {
+            if (currentProjectEl) {
+              const progress = self.progress;
+              // Add a slight offset to switch numbers midway
+              const index = Math.min(
+                totalPanels - 1,
+                Math.max(0, Math.round(progress * (totalPanels - 1)))
+              );
+              currentProjectEl.textContent = `0${index + 1}`;
+            }
+          }
+        }
+      });
+
+      // Panel inner animations
+      panels.forEach((panel) => {
+        // Image Parallax
+        const img = panel.querySelector(".project-image");
+        if (img) {
+          gsap.to(img, {
+            xPercent: 15, // Move slightly right as container moves left
+            ease: "none",
+            scrollTrigger: {
+              trigger: panel,
+              containerAnimation: scrollTween,
+              start: "left right",
+              end: "right left",
+              scrub: true
+            }
+          });
+        }
+
+        // Title and Tags Reveal
+        const titleSpan = panel.querySelector(".project-title span");
+        const tags = panel.querySelectorAll(".project-tech");
+        
+        if (titleSpan) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: panel,
+              containerAnimation: scrollTween,
+              start: "left 65%",
+              toggleActions: "play none none reverse"
+            }
+          });
+
+          tl.to(titleSpan, {
+            y: 0,
+            duration: 0.8,
+            ease: "power4.out"
+          });
+
+          if (tags.length > 0) {
+            tl.to(tags, {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: "back.out(1.2)"
+            }, "-=0.5");
+          }
+        }
+      });
+
+      return () => {
+        // Cleanup optional
+      };
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      // Reveal without animation
+      gsap.set("#projects-title", { autoAlpha: 1, y: 0 });
+      gsap.set(".project-title span", { y: 0 });
+      gsap.set(".project-tech", { autoAlpha: 1, y: 0 });
+      
+      const wrapper = document.getElementById("projects-wrapper");
+      const container = document.getElementById("projects-container");
+      const panels = gsap.utils.toArray(".project-panel");
+      const currentProjectEl = document.querySelector(".current-project");
+      
+      if (!wrapper || !container || panels.length === 0) return;
+      const totalPanels = panels.length;
+
+      // Simple horizontal pinning
+      gsap.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapper,
+          pin: true,
+          scrub: true,
+          end: () => "+=" + container.offsetWidth,
+          onUpdate: (self) => {
+            if (currentProjectEl) {
+              const index = Math.round(self.progress * (totalPanels - 1));
+              currentProjectEl.textContent = `0${index + 1}`;
+            }
+          }
+        }
+      });
+    });
+  });
+</script>

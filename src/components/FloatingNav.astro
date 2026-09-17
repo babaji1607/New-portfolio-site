@@ -1,26 +1,142 @@
 ---
+// FloatingNav.astro — Fixed trigger button + full-screen creative menu overlay
 ---
-<div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-  <div class="relative px-6 py-3 flex items-center gap-6 rounded-full border border-black/10 bg-white/40 backdrop-blur-md shadow-lg transition-all duration-300 hover:bg-white/50">
-    
-    <a href="#home" class="relative z-10 text-gray-800 hover:text-black transition-transform duration-300 hover:scale-110" title="Home">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    </a>
-    <a href="#about" class="relative z-10 text-gray-800 hover:text-black transition-transform duration-300 hover:scale-110" title="About">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-    </a>
-    <a href="#projects" class="relative z-10 text-gray-800 hover:text-black transition-transform duration-300 hover:scale-110" title="Projects">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h.01"/><path d="M17 7h.01"/><path d="M7 17h.01"/><path d="M17 17h.01"/></svg>
-    </a>
-    <a href="#skills" class="relative z-10 text-gray-800 hover:text-black transition-transform duration-300 hover:scale-110" title="Skills">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-    </a>
-    
-    <!-- Divider -->
-    <div class="relative z-10 w-px h-5 bg-black/20 mx-2"></div>
-    
-    <a href="https://github.com" target="_blank" class="relative z-10 text-gray-800 hover:text-black transition-transform duration-300 hover:scale-110" title="GitHub">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-    </a>
+
+<!-- Fixed menu trigger -->
+<button id="menu-trigger" class="fixed top-6 right-6 z-[70] flex items-center gap-3 group" aria-label="Open menu">
+  <span class="menu-label text-sm font-medium text-white/60 group-hover:text-white transition-colors hidden md:block">Menu</span>
+  <div class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex flex-col items-center justify-center gap-1.5 group-hover:bg-white/15 transition-all duration-300">
+    <span class="menu-line block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center"></span>
+    <span class="menu-line block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center"></span>
+  </div>
+</button>
+
+<!-- Full-screen menu overlay -->
+<div id="menu-overlay" class="fixed inset-0 z-[65] pointer-events-none">
+  <!-- Background panels that wipe in -->
+  <div class="menu-panel absolute inset-0 bg-[#111] origin-left scale-x-0"></div>
+  <div class="menu-panel-accent absolute inset-0 bg-[#0a0a0a] origin-left scale-x-0"></div>
+
+  <!-- Menu content -->
+  <div class="menu-content absolute inset-0 flex flex-col justify-center px-8 md:px-20 lg:px-32 opacity-0 invisible">
+    <nav class="flex flex-col gap-1 md:gap-3 mb-12">
+      <a href="#home" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">01</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">Home</span>
+      </a>
+      <a href="#projects" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">02</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">Projects</span>
+      </a>
+      <a href="#skills" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">03</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">Skills</span>
+      </a>
+      <a href="#experience" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">04</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">Experience</span>
+      </a>
+      <a href="#testimonials" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">05</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">Testimonials</span>
+      </a>
+      <a href="#about" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">06</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">About</span>
+      </a>
+      <a href="#contact" class="menu-link group flex items-center gap-6 py-2 md:py-3">
+        <span class="text-white/20 text-xs md:text-sm font-mono w-8 group-hover:text-white/50 transition-colors">07</span>
+        <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight group-hover:translate-x-4 transition-transform duration-500">Contact</span>
+      </a>
+    </nav>
+
+    <!-- Bottom info row -->
+    <div class="menu-footer flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-t border-white/10 pt-6">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-white/30 font-medium">Get in touch</span>
+        <a href="mailto:its.ashwin.23@gmail.com" class="text-sm text-white/70 hover:text-white transition-colors">its.ashwin.23@gmail.com</a>
+      </div>
+      <div class="flex gap-6">
+        <a href="https://github.com" target="_blank" class="text-sm text-white/40 hover:text-white transition-colors">Github</a>
+        <a href="https://linkedin.com" target="_blank" class="text-sm text-white/40 hover:text-white transition-colors">LinkedIn</a>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined') return;
+
+    const trigger = document.getElementById('menu-trigger');
+    const overlay = document.getElementById('menu-overlay');
+    const panel = document.querySelector('.menu-panel');
+    const panelAccent = document.querySelector('.menu-panel-accent');
+    const content = document.querySelector('.menu-content');
+    const links = document.querySelectorAll('.menu-link');
+    const footer = document.querySelector('.menu-footer');
+    const menuLines = document.querySelectorAll('.menu-line');
+
+    if (!trigger || !overlay || !panel || !panelAccent || !content) return;
+
+    let isOpen = false;
+    const openTl = gsap.timeline({ paused: true });
+    const closeTl = gsap.timeline({ paused: true });
+
+    // Open animation
+    openTl
+      .set(overlay, { pointerEvents: 'auto' })
+      .to(panel, { scaleX: 1, duration: 0.5, ease: 'power4.inOut' })
+      .to(panelAccent, { scaleX: 1, duration: 0.5, ease: 'power4.inOut' }, '-=0.35')
+      .to(content, { autoAlpha: 1, duration: 0.3 }, '-=0.2')
+      .from(links, { y: 60, autoAlpha: 0, duration: 0.5, stagger: 0.05, ease: 'power3.out' }, '-=0.2')
+      .from(footer, { y: 20, autoAlpha: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3')
+      // Morph hamburger to X
+      .to(menuLines[0], { rotation: 45, y: 3, duration: 0.3, ease: 'power2.out' }, 0)
+      .to(menuLines[1], { rotation: -45, y: -3, duration: 0.3, ease: 'power2.out' }, 0);
+
+    // Close animation
+    closeTl
+      .to(content, { autoAlpha: 0, duration: 0.2 })
+      .to(panelAccent, { scaleX: 0, transformOrigin: 'right', duration: 0.4, ease: 'power4.inOut' }, '-=0.1')
+      .to(panel, { scaleX: 0, transformOrigin: 'right', duration: 0.4, ease: 'power4.inOut' }, '-=0.3')
+      .set(overlay, { pointerEvents: 'none' })
+      // Reset panel origins for next open
+      .set(panel, { transformOrigin: 'left', scaleX: 0 })
+      .set(panelAccent, { transformOrigin: 'left', scaleX: 0 })
+      // Morph X back to hamburger
+      .to(menuLines[0], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.out' }, 0)
+      .to(menuLines[1], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.out' }, 0);
+
+    trigger.addEventListener('click', () => {
+      if (isOpen) {
+        closeTl.restart();
+        document.body.style.overflow = '';
+      } else {
+        openTl.restart();
+        document.body.style.overflow = 'hidden';
+      }
+      isOpen = !isOpen;
+    });
+
+    // Close on nav link click
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) {
+          closeTl.restart();
+          document.body.style.overflow = '';
+          isOpen = false;
+        }
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeTl.restart();
+        document.body.style.overflow = '';
+        isOpen = false;
+      }
+    });
+  });
+</script>

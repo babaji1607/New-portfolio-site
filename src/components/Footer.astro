@@ -1,39 +1,184 @@
 ---
 ---
-<footer class="w-full">
-  <div class="px-8 py-24 md:px-16 bg-[#f4f4f4]">
-    <div class="max-w-7xl mx-auto">
-      <p class="text-sm font-mono text-gray-500 mb-4">That's all for now.</p>
-      
-      <div class="relative flex flex-col md:flex-row justify-between items-start md:items-center">
-        <h2 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 leading-tight">
-          Got a project in mind?<br/>Let's talk
-        </h2>
-        
-        <a href="mailto:its.ashwin.23@gmail.com" class="mt-8 md:mt-0 w-32 h-32 md:w-40 md:h-40 bg-[#556bf0] rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform duration-300 shadow-lg absolute right-0 top-1/2 transform -translate-y-1/2 md:translate-y-0 md:relative z-10">
-          Get in touch
+
+<footer id="contact" class="relative bg-[#0a0a0a] text-white pt-24 pb-8 overflow-hidden z-10 flex flex-col justify-between min-h-screen">
+  <!-- Content -->
+  <div class="container mx-auto px-6 lg:px-12 flex-grow flex flex-col justify-center">
+    <!-- Massive CTA -->
+    <div class="mb-20">
+      <h2 id="footer-cta" class="text-[10vw] leading-[0.9] font-black uppercase tracking-tighter w-full">
+        <span class="block overflow-hidden"><span class="cta-word inline-block translate-y-[120%]">Let's</span></span>
+        <span class="block overflow-hidden"><span class="cta-word inline-block translate-y-[120%] text-neutral-400">build</span></span>
+        <span class="block overflow-hidden"><span class="cta-word inline-block translate-y-[120%]">something</span></span>
+        <span class="block overflow-hidden"><span class="cta-word inline-block translate-y-[120%]">together.</span></span>
+      </h2>
+    </div>
+
+    <!-- Contact Row & Magnetic Button -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-12">
+      <!-- Links -->
+      <div class="flex flex-col gap-4 text-xl md:text-2xl font-light">
+        <a href="mailto:its.ashwin.23@gmail.com" class="group relative w-fit overflow-hidden pb-1">
+          <span class="relative z-10 block transition-transform duration-500 group-hover:-translate-y-full">its.ashwin.23@gmail.com</span>
+          <span class="absolute inset-0 z-10 block translate-y-full transition-transform duration-500 group-hover:translate-y-0 text-white">its.ashwin.23@gmail.com</span>
+          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-700 transform origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></span>
+          <span class="absolute bottom-0 right-0 w-full h-[1px] bg-white transform origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></span>
+        </a>
+        <a href="https://github.com" target="_blank" class="group relative w-fit overflow-hidden pb-1">
+          <span class="relative z-10 block transition-transform duration-500 group-hover:-translate-y-full">Github</span>
+          <span class="absolute inset-0 z-10 block translate-y-full transition-transform duration-500 group-hover:translate-y-0 text-white">Github</span>
+          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-700 transform origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></span>
+          <span class="absolute bottom-0 right-0 w-full h-[1px] bg-white transform origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="group relative w-fit overflow-hidden pb-1">
+          <span class="relative z-10 block transition-transform duration-500 group-hover:-translate-y-full">LinkedIn</span>
+          <span class="absolute inset-0 z-10 block translate-y-full transition-transform duration-500 group-hover:translate-y-0 text-white">LinkedIn</span>
+          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-700 transform origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></span>
+          <span class="absolute bottom-0 right-0 w-full h-[1px] bg-white transform origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></span>
         </a>
       </div>
 
-      <div class="mt-24 pt-8 border-t border-gray-300 flex flex-col md:flex-row justify-between gap-4">
-        <div>
-          <p class="text-xs text-gray-400 mb-1">Email:</p>
-          <a href="mailto:hello@yourdomain.com" class="text-sm font-medium text-gray-900 hover:text-blue-600">hello@yourdomain.com</a>
-        </div>
-        <div>
-          <p class="text-xs text-gray-400 mb-1">Phone</p>
-          <a href="tel:+1234567890" class="text-sm font-medium text-gray-900 hover:text-blue-600">(+1) 234 567 890</a>
-        </div>
+      <!-- Magnetic Button -->
+      <a href="mailto:its.ashwin.23@gmail.com" class="magnetic-btn relative flex items-center justify-center w-40 h-40 rounded-full bg-white text-[#0a0a0a] hover:bg-neutral-200 transition-colors duration-300">
+        <span class="magnetic-btn-text text-lg font-medium text-center leading-tight">Get in<br>Touch</span>
+      </a>
+    </div>
+
+    <!-- Bottom Footer Row -->
+    <div class="flex flex-col md:flex-row justify-between items-center text-sm text-neutral-400 py-6 border-t border-neutral-800">
+      <div class="mb-4 md:mb-0">
+        &copy; 2024 Mohit Ashliya
+      </div>
+      <div class="mb-4 md:mb-0 text-center">
+        Local time: <span id="local-time" class="text-white">--:-- --</span>
+      </div>
+      <div>
+        Made with passion
       </div>
     </div>
   </div>
 
-  <div class="bg-black text-white px-8 py-16 md:px-16 flex flex-col items-center justify-center overflow-hidden relative">
-    <div class="absolute right-8 top-8 w-12 h-12 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform cursor-pointer">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-    </div>
-    
-    <p class="text-xl md:text-3xl font-light tracking-wide mb-4">your friendly chaos creator</p>
-    <h1 class="text-[15vw] font-bold leading-none tracking-tighter">Ahhhhhhhh</h1>
+  <!-- Giant Name Parallax -->
+  <div class="w-full overflow-hidden mt-10 pointer-events-none">
+    <h1 id="giant-name" class="text-[20vw] leading-none font-black text-transparent text-center select-none" style="-webkit-text-stroke: 2px rgba(255,255,255,0.15);">
+      MOHIT
+    </h1>
   </div>
+
+  <!-- Scroll to top -->
+  <button id="scroll-to-top" class="fixed bottom-24 md:bottom-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 opacity-0 invisible z-50 hover:bg-white/20 transition-colors cursor-pointer" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // @ts-ignore
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      // @ts-ignore
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // @ts-ignore
+      let mm = gsap.matchMedia();
+      
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // @ts-ignore
+        gsap.to(".cta-word", {
+          y: "0%",
+          ease: "power4.out",
+          duration: 1.2,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: "#footer-cta",
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        });
+        
+        const magneticBtn = document.querySelector(".magnetic-btn") as HTMLElement;
+        const magneticText = document.querySelector(".magnetic-btn-text") as HTMLElement;
+        
+        if (magneticBtn && magneticText) {
+          magneticBtn.addEventListener("mousemove", (e: MouseEvent) => {
+            const rect = magneticBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // @ts-ignore
+            gsap.to(magneticBtn, {
+              x: x * 0.4,
+              y: y * 0.4,
+              duration: 0.6,
+              ease: "power3.out"
+            });
+            
+            // @ts-ignore
+            gsap.to(magneticText, {
+              x: x * 0.2,
+              y: y * 0.2,
+              duration: 0.6,
+              ease: "power3.out"
+            });
+          });
+          
+          magneticBtn.addEventListener("mouseleave", () => {
+            // @ts-ignore
+            gsap.to([magneticBtn, magneticText], {
+              x: 0,
+              y: 0,
+              duration: 0.8,
+              ease: "elastic.out(1, 0.3)"
+            });
+          });
+        }
+        
+        // @ts-ignore
+        gsap.fromTo("#giant-name", 
+          { y: 100 },
+          { 
+            y: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "footer",
+              start: "top bottom",
+              end: "bottom bottom",
+              scrub: true
+            }
+          }
+        );
+        
+        const scrollTopBtn = document.getElementById("scroll-to-top");
+        if (scrollTopBtn) {
+          // @ts-ignore
+          gsap.to(scrollTopBtn, {
+            autoAlpha: 1,
+            scrollTrigger: {
+              trigger: "body",
+              start: "top -500px",
+              end: "bottom top",
+              toggleActions: "play none none reverse"
+            }
+          });
+          
+          scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+      });
+    }
+    
+    // Live Time Update
+    const timeEl = document.getElementById("local-time");
+    if (timeEl) {
+      const updateTime = () => {
+        const now = new Date();
+        timeEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+      };
+      updateTime();
+      setInterval(updateTime, 1000);
+    }
+  });
+</script>

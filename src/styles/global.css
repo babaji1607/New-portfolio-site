@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+/* Premium smooth scrolling */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}

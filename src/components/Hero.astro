@@ -1,25 +1,272 @@
 ---
+// Premium Hero Component
 ---
-<section id="home" class="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#e5e9f0]">
-  
-  <!-- Looping Background Video -->
-  <video 
-    autoplay 
-    loop 
-    muted 
-    playsinline 
-    class="absolute inset-0 w-full h-full object-cover z-0"
-  >
-    <source src="/hero-video.webm" type="video/webm" />
-  </video>
+<section id="home" class="relative w-full h-screen overflow-hidden bg-[#0a0a0a] text-white flex items-center justify-center">
+  <!-- Progress bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-white z-50 origin-left scale-x-0 w-full pointer-events-none mix-blend-difference"></div>
 
-  <!-- Text strictly inside the bright sky area of the window -->
-  <!-- Positioned roughly in the center of the left window pane -->
-  <div class="absolute z-20 left-[45%] top-[18%] w-full max-w-[300px] md:max-w-[400px] text-center transform -translate-x-1/2">
-    <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight leading-snug">
-      Making and deploying apps <br /> 
-      <span class="italic font-serif font-medium text-gray-800">with Ease</span>
-    </h1>
+  <!-- Ambient light cursor follower -->
+  <div id="ambient-light" class="pointer-events-none fixed top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 transition-opacity duration-500"></div>
+
+  <!-- Video Background -->
+  <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+    <video
+      id="hero-video"
+      autoplay
+      loop
+      playsinline
+      class="w-full h-full object-cover scale-100 origin-center"
+    >
+      <source src="/hero-video.webm" type="video/webm" />
+    </video>
   </div>
 
+  <!-- Overlays -->
+  <!-- Dynamic Gradient -->
+  <div id="hero-gradient" class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-[#0a0a0a]/20 to-[#0a0a0a] z-0"></div>
+  <!-- Grain Overlay -->
+  <div class="absolute inset-0 opacity-[0.04] z-0 pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+
+  <!-- Sound Toggle Control (Top Left) -->
+  <button id="sound-toggle" class="absolute top-6 left-6 z-30 flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium tracking-wider text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300" aria-label="Toggle Sound">
+    <span id="sound-icon" class="flex items-center">
+      <!-- Volume Up Icon (Active) -->
+      <svg id="icon-sound-on" class="w-4 h-4 text-green-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+      </svg>
+      <!-- Volume Off Icon -->
+      <svg id="icon-sound-off" class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+      </svg>
+    </span>
+    <span id="sound-text">SOUND OFF</span>
+  </button>
+
+  <!-- Content -->
+  <div id="hero-content" class="relative z-10 flex flex-col items-center justify-center max-w-5xl mx-auto px-6 text-center pt-16">
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight flex flex-wrap justify-center gap-x-3 md:gap-x-4 gap-y-2 mb-6" aria-label="I build & deploy systems that scale with ease">
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">I</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">build</span></span>
+      <span class="word-wrapper overflow-hidden pb-2 text-white/70"><span class="word inline-block invisible">&</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">deploy</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">systems</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">that</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">scale</span></span>
+      <span class="word-wrapper overflow-hidden pb-2 text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-blue-400 font-serif italic"><span class="word inline-block invisible">with ease.</span></span>
+    </h1>
+
+    <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 mt-2 mb-10">
+      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide">DevOps Engineer</span>
+      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide">Mobile Developer</span>
+      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide">Cloud Architect</span>
+    </div>
+
+    <!-- Direct Connection CTA Button -->
+    <div class="hero-cta-wrapper invisible flex flex-col md:flex-row items-center gap-4">
+      <a 
+        href="#contact" 
+        class="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-base tracking-wide hover:bg-neutral-200 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+      >
+        <span>Let's Connect Directly</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div id="scroll-indicator" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3">
+    <span class="text-[10px] uppercase tracking-[0.3em] text-white/50 font-medium">Scroll to explore</span>
+    <div class="w-[1px] h-12 bg-white/20 relative overflow-hidden">
+      <div class="scroll-dot w-full h-1/3 bg-white absolute top-0 left-0"></div>
+    </div>
+  </div>
 </section>
+
+<script>
+  // Setup GSAP
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  
+  if (gsap && ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    // Mouse Follower Setup
+    const ambientLight = document.getElementById('ambient-light');
+    const heroSection = document.getElementById('home');
+    
+    if (ambientLight && heroSection) {
+      heroSection.addEventListener('mouseenter', () => {
+        ambientLight.style.opacity = '1';
+      });
+      heroSection.addEventListener('mouseleave', () => {
+        ambientLight.style.opacity = '0';
+      });
+      
+      const xTo = gsap.quickTo(ambientLight, "x", {duration: 0.8, ease: "power3"});
+      const yTo = gsap.quickTo(ambientLight, "y", {duration: 0.8, ease: "power3"});
+      
+      window.addEventListener("mousemove", (e) => {
+        xTo(e.clientX);
+        yTo(e.clientY);
+      });
+    }
+
+    // Video Audio Toggle & Default Play
+    const heroVideo = document.getElementById('hero-video') as HTMLVideoElement;
+    const soundToggle = document.getElementById('sound-toggle');
+    const iconSoundOn = document.getElementById('icon-sound-on');
+    const iconSoundOff = document.getElementById('icon-sound-off');
+    const soundText = document.getElementById('sound-text');
+
+    if (heroVideo && soundToggle) {
+      // Attempt unmuted play by default
+      heroVideo.muted = false;
+      const playPromise = heroVideo.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Unmuted autoplay succeeded
+          updateSoundUI(true);
+        }).catch(() => {
+          // Browser policy blocked unmuted autoplay -> fallback to muted until user clicks
+          heroVideo.muted = true;
+          heroVideo.play();
+          updateSoundUI(false);
+        });
+      }
+
+      function updateSoundUI(isUnmuted: boolean) {
+        if (isUnmuted) {
+          iconSoundOn?.classList.remove('hidden');
+          iconSoundOff?.classList.add('hidden');
+          if (soundText) soundText.textContent = "SOUND ON";
+        } else {
+          iconSoundOn?.classList.add('hidden');
+          iconSoundOff?.classList.remove('hidden');
+          if (soundText) soundText.textContent = "SOUND OFF";
+        }
+      }
+
+      soundToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        heroVideo.muted = !heroVideo.muted;
+        if (heroVideo.muted) {
+          updateSoundUI(false);
+        } else {
+          heroVideo.play();
+          updateSoundUI(true);
+        }
+      });
+
+      // Enable sound on first interaction anywhere if currently muted
+      const enableAudioOnUserGesture = () => {
+        if (heroVideo.muted) {
+          heroVideo.muted = false;
+          heroVideo.play().then(() => updateSoundUI(true)).catch(() => {});
+        }
+        window.removeEventListener('click', enableAudioOnUserGesture);
+      };
+      window.addEventListener('click', enableAudioOnUserGesture, { once: true });
+    }
+
+    mm.add({
+      reduceMotion: "(prefers-reduced-motion: reduce)",
+      noReduceMotion: "(prefers-reduced-motion: no-preference)"
+    }, (context) => {
+      const { reduceMotion } = context.conditions;
+      
+      if (!reduceMotion) {
+        // Initial Entry Animation
+        const tl = gsap.timeline();
+        
+        tl.set(".word", { y: 120, rotation: 10, autoAlpha: 0 })
+          .set(".role-badge", { y: 30, autoAlpha: 0 })
+          .set(".hero-cta-wrapper", { y: 20, autoAlpha: 0 })
+          .set(".scroll-dot", { y: -30 });
+
+        tl.to(".word", {
+          y: 0,
+          rotation: 0,
+          autoAlpha: 1,
+          duration: 1.4,
+          stagger: 0.1,
+          ease: "power4.out"
+        })
+        .to(".role-badge", {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "back.out(1.5)"
+        }, "-=0.8")
+        .to(".hero-cta-wrapper", {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: "power3.out"
+        }, "-=0.5");
+        
+        // Scroll Indicator Pulsing
+        gsap.to(".scroll-dot", {
+          y: 48,
+          duration: 1.8,
+          repeat: -1,
+          ease: "power2.inOut"
+        });
+
+        // Parallax and Scroll Effects
+        const heroScrollTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#home",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+
+        heroScrollTl
+          .to("#hero-video", { scale: 1.15, ease: "none" }, 0)
+          .to("#hero-content", { y: 200, ease: "none" }, 0)
+          .to("#hero-gradient", { autoAlpha: 0.9, ease: "none" }, 0)
+          .to("#scroll-indicator", { autoAlpha: 0, y: 50, ease: "none" }, 0);
+          
+      } else {
+        // Reduced motion fallback
+        gsap.set(".word", { autoAlpha: 1, y: 0, rotation: 0 });
+        gsap.set(".role-badge", { autoAlpha: 1, y: 0 });
+        gsap.set(".hero-cta-wrapper", { autoAlpha: 1, y: 0 });
+        
+        // Simple fade on scroll
+        gsap.to("#hero-content", {
+          autoAlpha: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#home",
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      }
+      
+      // Global scroll progress bar
+      gsap.to("#scroll-progress", {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true
+        }
+      });
+      
+    });
+  }
+</script>

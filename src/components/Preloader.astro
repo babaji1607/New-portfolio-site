@@ -1,0 +1,51 @@
+---
+// Preloader component - shows a premium loading animation before revealing the page
+---
+
+<div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#0a0a0a]">
+  <div class="flex flex-col items-center gap-6">
+    <div class="preloader-name text-4xl md:text-6xl font-bold tracking-tighter text-white overflow-hidden">
+      <span class="preloader-text block translate-y-full">Mohit Ashliya</span>
+    </div>
+    <div class="preloader-line w-32 h-[2px] bg-white/20 overflow-hidden">
+      <div class="preloader-fill h-full bg-white w-0"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined') {
+      const preloader = document.getElementById('preloader');
+      if (preloader) preloader.style.display = 'none';
+      return;
+    }
+
+    const tl = gsap.timeline();
+    
+    // Animate name in
+    tl.to('.preloader-text', {
+      y: 0,
+      duration: 1,
+      ease: 'power4.out'
+    })
+    // Fill progress bar
+    .to('.preloader-fill', {
+      width: '100%',
+      duration: 1.2,
+      ease: 'power2.inOut'
+    }, '-=0.3')
+    // Fade out everything
+    .to('.preloader-text', {
+      y: -120,
+      duration: 0.6,
+      ease: 'power3.in'
+    }, '+=0.2')
+    .to('#preloader', {
+      yPercent: -100,
+      duration: 0.8,
+      ease: 'power4.inOut'
+    }, '-=0.3')
+    .set('#preloader', { display: 'none' });
+  });
+</script>
