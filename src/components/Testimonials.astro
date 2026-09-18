@@ -1,95 +1,229 @@
 ---
-// src/components/Testimonials.astro — Creative Testimonials Section
+// src/components/Testimonials.astro — Creative & Complete Testimonials Section
 const testimonials = [
   {
-    quote: "Mohit transformed our deployment architecture completely. What used to take hours of manual work is now fully automated and rock-solid.",
+    id: 1,
+    category: "devops",
+    categoryLabel: "DevOps & Infrastructure",
+    quote: "Mohit transformed our deployment architecture completely. What used to take hours of manual work and risky SSH deployment scripts is now fully automated via Terraform and Kubernetes, running rock-solid across multi-region environments.",
     author: "Alex Rivera",
     role: "VP of Engineering",
     company: "CloudScale Inc.",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
-    metric: "99.99% Uptime Achieved"
+    metric: "99.99% Uptime Achieved",
+    verified: true
   },
   {
-    quote: "An exceptional developer who understands both frontend experience and heavy backend scalability. Delivered our mobile app 2 weeks ahead of schedule.",
+    id: 2,
+    category: "mobile",
+    categoryLabel: "Mobile Development",
+    quote: "An exceptional developer who understands both frontend user experience and heavy backend scalability. Delivered our React Native application 2 weeks ahead of schedule with zero critical bugs during initial launch.",
     author: "Sarah Chen",
     role: "Head of Product",
     company: "FinTech Global",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-    metric: "2x App Performance"
+    metric: "2x App Performance",
+    verified: true
   },
   {
-    quote: "Working with Mohit was a game changer. His mastery over Kubernetes and CI/CD pipelines cut our infrastructure costs by 40% in just 3 months.",
+    id: 3,
+    category: "cloud",
+    categoryLabel: "Cloud Architecture",
+    quote: "Working with Mohit was a game changer for our cloud expenditure. His mastery over AWS cost optimization, serverless architecture, and CI/CD pipelines cut our monthly cloud infrastructure expenses by 40%.",
     author: "Marcus Vance",
     role: "CTO & Co-Founder",
     company: "Nexus Systems",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
-    metric: "40% Cost Reduction"
+    metric: "40% Cost Savings",
+    verified: true
+  },
+  {
+    id: 4,
+    category: "devops",
+    categoryLabel: "DevOps & Infrastructure",
+    quote: "Mohit built our entire automated testing and GitOps workflow using ArgoCD and GitHub Actions. Developer velocity has tripled, and release cycle time dropped from days to under 15 minutes.",
+    author: "Elena Rostova",
+    role: "Lead Systems Architect",
+    company: "DataPulse Solutions",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+    metric: "100% Automated CI/CD",
+    verified: true
+  },
+  {
+    id: 5,
+    category: "mobile",
+    categoryLabel: "Mobile Development",
+    quote: "Mohit's mobile expertise enabled us to launch a seamless Flutter app for both iOS and Android. The offline sync capability and buttery-smooth 60fps UI have received rave reviews from our user base.",
+    author: "David K. Park",
+    role: "Founder & CEO",
+    company: "Omnia Commerce",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+    metric: "4.9★ App Store Rating",
+    verified: true
+  },
+  {
+    id: 6,
+    category: "cloud",
+    categoryLabel: "Cloud Architecture",
+    quote: "Security and compliance were non-negotiables for VaultPay. Mohit architected our VPC peering, IAM policies, and encrypted databases to withstand rigorous security audits with zero findings.",
+    author: "Priya Sharma",
+    role: "VP of Infrastructure",
+    company: "VaultPay Security",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+    metric: "SOC2 Audit Passed",
+    verified: true
   }
+];
+
+const stats = [
+  { label: "Infrastructure Uptime", value: "99.99%" },
+  { label: "Enterprise Projects", value: "15+" },
+  { label: "Avg Cost Reduction", value: "40%" },
+  { label: "Client Rating", value: "5.0 ★" }
 ];
 ---
 
-<section id="testimonials" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+<section id="testimonials" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden border-t border-white/5">
+  <!-- Subtle Background Glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
     
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
       <div>
-        <span class="text-sm font-medium text-white/40 uppercase tracking-widest block mb-3">Client Feedback</span>
-        <h2 class="testi-heading text-5xl md:text-7xl font-bold tracking-tighter leading-none">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest uppercase text-blue-400 mb-4">
+          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Verified Client Feedback
+        </div>
+        <h2 class="testi-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
           What leaders say
         </h2>
       </div>
-      <p class="text-white/40 max-w-sm text-base leading-relaxed">
-        Trusted by engineering leaders, product founders, and CTOs to deliver mission-critical software.
+      <p class="text-white/60 max-w-md text-base md:text-lg leading-relaxed font-light">
+        Trusted by engineering leaders, product founders, and CTOs to deliver mission-critical software, cloud automation, and mobile experiences.
       </p>
     </div>
 
-    <!-- Testimonials Creative Grid -->
-    <div class="testimonials-grid grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
-      {testimonials.map((item, index) => (
-        <div class="testi-card group relative bg-[#111] border border-white/[0.08] rounded-3xl p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-500 hover:-translate-y-2">
-          
-          <!-- Background Subtle Number -->
-          <div class="absolute top-6 right-8 text-7xl font-black text-white/[0.03] select-none pointer-events-none font-mono">
-            0{index + 1}
+    <!-- Trust Stats Counter Bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+      {stats.map(stat => (
+        <div class="bg-[#111] border border-white/[0.08] rounded-2xl p-5 md:p-6 text-center hover:border-white/20 transition-all duration-300">
+          <div class="text-3xl md:text-4xl font-bold font-mono tracking-tight text-white mb-1">
+            {stat.value}
           </div>
+          <div class="text-xs md:text-sm text-white/50 font-medium">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
 
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-12">
+      <button 
+        data-filter="all" 
+        class="testi-filter-btn active px-5 py-2.5 rounded-full border border-white/20 bg-white text-black font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
+      >
+        All Endorsements
+      </button>
+      <button 
+        data-filter="devops" 
+        class="testi-filter-btn px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
+      >
+        DevOps & CI/CD
+      </button>
+      <button 
+        data-filter="mobile" 
+        class="testi-filter-btn px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
+      >
+        Mobile Apps
+      </button>
+      <button 
+        data-filter="cloud" 
+        class="testi-filter-btn px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
+      >
+        Cloud & Security
+      </button>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="testimonials-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((item) => (
+        <div 
+          data-category={item.category}
+          class="testi-card group relative bg-[#111] border border-white/[0.08] rounded-3xl p-8 md:p-9 flex flex-col justify-between hover:border-blue-500/40 hover:bg-[#141416] transition-all duration-500 hover:-translate-y-2 shadow-xl"
+        >
+          
+          <!-- Top Rating & Metric Badge -->
           <div>
-            <!-- Top Rating & Metric Badge -->
-            <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center justify-between mb-6">
               <div class="flex gap-1 text-amber-400">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                {[...Array(5)].map(() => (
+                  <svg class="w-4 h-4 fill-current drop-shadow" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                ))}
               </div>
-              <span class="px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full text-xs font-mono text-white/70">
+              <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-[11px] font-mono font-medium text-blue-300">
                 {item.metric}
               </span>
             </div>
 
             <!-- Quote Text -->
-            <p class="text-lg md:text-xl text-white/80 leading-relaxed font-light mb-10 italic">
+            <p class="text-base md:text-lg text-white/85 leading-relaxed font-normal mb-8 italic">
               "{item.quote}"
             </p>
           </div>
 
           <!-- Author Info -->
-          <div class="flex items-center gap-4 pt-6 border-t border-white/[0.06]">
-            <img 
-              src={item.avatar} 
-              alt={item.author} 
-              class="w-12 h-12 rounded-full object-cover border border-white/20"
-            />
-            <div>
-              <h4 class="text-base font-bold text-white leading-snug">{item.author}</h4>
-              <p class="text-xs text-white/50">{item.role} · <span class="text-white/70">{item.company}</span></p>
+          <div class="flex items-center justify-between pt-6 border-t border-white/[0.06] mt-auto">
+            <div class="flex items-center gap-3.5">
+              <img 
+                src={item.avatar} 
+                alt={item.author} 
+                class="w-11 h-11 rounded-full object-cover border border-white/20 group-hover:border-blue-400 transition-colors duration-300"
+              />
+              <div>
+                <h4 class="text-sm font-bold text-white leading-snug flex items-center gap-1.5">
+                  {item.author}
+                  {item.verified && (
+                    <svg class="w-3.5 h-3.5 text-blue-400 fill-current inline-block" viewBox="0 0 24 24">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                  )}
+                </h4>
+                <p class="text-xs text-white/50">{item.role} · <span class="text-white/70">{item.company}</span></p>
+              </div>
             </div>
+            
+            <span class="text-[10px] font-mono text-white/30 uppercase tracking-wider hidden sm:block">
+              {item.categoryLabel.split(' ')[0]}
+            </span>
           </div>
 
         </div>
       ))}
+    </div>
+
+    <!-- Bottom Action Callout -->
+    <div class="mt-20 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-white/[0.03] via-white/[0.05] to-white/[0.03] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <h3 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">
+          Want to discuss your next project?
+        </h3>
+        <p class="text-white/60 text-sm md:text-base max-w-xl">
+          Whether you need to scale infrastructure, optimize cloud costs, or build a high-performance mobile app, let's connect.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-4 shrink-0">
+        <a 
+          href="#contact" 
+          class="px-7 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95"
+        >
+          Let's Connect Directly
+        </a>
+      </div>
     </div>
 
   </div>
@@ -100,6 +234,49 @@ const testimonials = [
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
 
+    const filterBtns = document.querySelectorAll('.testi-filter-btn');
+    const cards = document.querySelectorAll('.testi-card');
+
+    // Filter Functionality
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Toggle active button style
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-white', 'text-black', 'border-white/20');
+          b.classList.add('bg-white/5', 'text-white/70', 'border-white/10');
+        });
+        btn.classList.add('active', 'bg-white', 'text-black', 'border-white/20');
+        btn.classList.remove('bg-white/5', 'text-white/70', 'border-white/10');
+
+        // Filter cards animation
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            gsap.to(card, {
+              autoAlpha: 1,
+              scale: 1,
+              display: 'flex',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          } else {
+            gsap.to(card, {
+              autoAlpha: 0,
+              scale: 0.95,
+              duration: 0.3,
+              ease: 'power2.in',
+              onComplete: () => {
+                (card as HTMLElement).style.display = 'none';
+              }
+            });
+          }
+        });
+      });
+    });
+
+    // Initial ScrollTrigger Animations
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -121,7 +298,7 @@ const testimonials = [
         y: 40,
         autoAlpha: 0,
         duration: 0.8,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: '.testimonials-grid',
