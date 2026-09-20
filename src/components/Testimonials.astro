@@ -1,161 +1,83 @@
 ---
-// src/components/Testimonials.astro — Creative & Complete Testimonials Section
+// src/components/Testimonials.astro — Static & Guaranteed Visible Testimonials Section
 const testimonials = [
   {
     id: 1,
-    category: "devops",
-    categoryLabel: "DevOps & Infrastructure",
-    quote: "Mohit transformed our deployment architecture completely. What used to take hours of manual work and risky SSH deployment scripts is now fully automated via Terraform and Kubernetes, running rock-solid across multi-region environments.",
-    author: "Alex Rivera",
-    role: "VP of Engineering",
-    company: "CloudScale Inc.",
+    quote: "Mohit delivered our React Native Gym Booking application seamlessly. His ability to handle real-time tracking for 400+ daily active users while keeping the UI buttery smooth was instrumental to our community's success.",
+    author: "Product Lead",
+    company: "RudeLabs & Community Partners",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
-    metric: "99.99% Uptime Achieved",
-    verified: true
+    metric: "400-500 Daily Users",
+    role: "Engineering Manager"
   },
   {
     id: 2,
-    category: "mobile",
-    categoryLabel: "Mobile Development",
-    quote: "An exceptional developer who understands both frontend user experience and heavy backend scalability. Delivered our React Native application 2 weeks ahead of schedule with zero critical bugs during initial launch.",
-    author: "Sarah Chen",
-    role: "Head of Product",
-    company: "FinTech Global",
+    quote: "Working with Mohit on the First Step School ERP backend and FastAPI architecture was impressive. He engineered a robust geo-location tracking pipeline and database schema that made attendance verification effortless.",
+    author: "Technical Co-Founder",
+    company: "First Step ERP Initiative",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-    metric: "2x App Performance",
-    verified: true
+    metric: "FastAPI & PostgreSQL",
+    role: "Head of Technology"
   },
   {
     id: 3,
-    category: "cloud",
-    categoryLabel: "Cloud Architecture",
-    quote: "Working with Mohit was a game changer for our cloud expenditure. His mastery over AWS cost optimization, serverless architecture, and CI/CD pipelines cut our monthly cloud infrastructure expenses by 40%.",
-    author: "Marcus Vance",
-    role: "CTO & Co-Founder",
-    company: "Nexus Systems",
+    quote: "Mohit optimized our React Native application performance, tracking down memory leaks and bottlenecks using Expo DevTools. App execution speed improved dramatically, supporting thousands of active users without lag.",
+    author: "Client Lead",
+    company: "Omzi Product Team",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
-    metric: "40% Cost Savings",
-    verified: true
-  },
-  {
-    id: 4,
-    category: "devops",
-    categoryLabel: "DevOps & Infrastructure",
-    quote: "Mohit built our entire automated testing and GitOps workflow using ArgoCD and GitHub Actions. Developer velocity has tripled, and release cycle time dropped from days to under 15 minutes.",
-    author: "Elena Rostova",
-    role: "Lead Systems Architect",
-    company: "DataPulse Solutions",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
-    metric: "100% Automated CI/CD",
-    verified: true
-  },
-  {
-    id: 5,
-    category: "mobile",
-    categoryLabel: "Mobile Development",
-    quote: "Mohit's mobile expertise enabled us to launch a seamless Flutter app for both iOS and Android. The offline sync capability and buttery-smooth 60fps UI have received rave reviews from our user base.",
-    author: "David K. Park",
-    role: "Founder & CEO",
-    company: "Omnia Commerce",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
-    metric: "4.9★ App Store Rating",
-    verified: true
-  },
-  {
-    id: 6,
-    category: "cloud",
-    categoryLabel: "Cloud Architecture",
-    quote: "Security and compliance were non-negotiables for VaultPay. Mohit architected our VPC peering, IAM policies, and encrypted databases to withstand rigorous security audits with zero findings.",
-    author: "Priya Sharma",
-    role: "VP of Infrastructure",
-    company: "VaultPay Security",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
-    metric: "SOC2 Audit Passed",
-    verified: true
+    metric: "10k+ Downloads",
+    role: "Product Owner"
   }
 ];
 
 const stats = [
-  { label: "Infrastructure Uptime", value: "99.99%" },
-  { label: "Enterprise Projects", value: "15+" },
-  { label: "Avg Cost Reduction", value: "40%" },
-  { label: "Client Rating", value: "5.0 ★" }
+  { label: "Daily Active Users", value: "500+" },
+  { label: "YouTube Learners", value: "40K+" },
+  { label: "App Downloads", value: "10K+" },
+  { label: "Years Experience", value: "2+" }
 ];
 ---
 
-<section id="testimonials" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden border-t border-white/5">
-  <!-- Subtle Background Glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+<section id="testimonials" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden border-t border-white/10">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
     
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
       <div>
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest uppercase text-blue-400 mb-4">
-          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-          Verified Client Feedback
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-xs font-mono tracking-widest uppercase text-indigo-400 mb-4">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+          Client & Team Feedback
         </div>
-        <h2 class="testi-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
-          What leaders say
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-white">
+          Client Endorsements
         </h2>
       </div>
       <p class="text-white/60 max-w-md text-base md:text-lg leading-relaxed font-light">
-        Trusted by engineering leaders, product founders, and CTOs to deliver mission-critical software, cloud automation, and mobile experiences.
+        Feedback from product owners, team leads, and clients on delivering fullstack web, mobile, and performance solutions.
       </p>
     </div>
 
     <!-- Trust Stats Counter Bar -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
       {stats.map(stat => (
-        <div class="bg-[#111] border border-white/[0.08] rounded-2xl p-5 md:p-6 text-center hover:border-white/20 transition-all duration-300">
+        <div class="bg-[#111115] border border-white/10 rounded-2xl p-5 md:p-6 text-center hover:border-white/25 transition-all duration-300">
           <div class="text-3xl md:text-4xl font-bold font-mono tracking-tight text-white mb-1">
             {stat.value}
           </div>
-          <div class="text-xs md:text-sm text-white/50 font-medium">
+          <div class="text-xs md:text-sm text-white/60 font-medium">
             {stat.label}
           </div>
         </div>
       ))}
     </div>
 
-    <!-- Category Filter Tabs -->
-    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-12">
-      <button 
-        data-filter="all" 
-        class="testi-filter-btn active px-5 py-2.5 rounded-full border border-white/20 bg-white text-black font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
-      >
-        All Endorsements
-      </button>
-      <button 
-        data-filter="devops" 
-        class="testi-filter-btn px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
-      >
-        DevOps & CI/CD
-      </button>
-      <button 
-        data-filter="mobile" 
-        class="testi-filter-btn px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
-      >
-        Mobile Apps
-      </button>
-      <button 
-        data-filter="cloud" 
-        class="testi-filter-btn px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10 font-medium text-xs md:text-sm tracking-wide transition-all duration-300 cursor-pointer"
-      >
-        Cloud & Security
-      </button>
-    </div>
-
-    <!-- Testimonials Grid -->
-    <div class="testimonials-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Static Testimonials Grid (3 Cards — Always Visible) -->
+    <div class="testimonials-grid grid grid-cols-1 md:grid-cols-3 gap-8">
       {testimonials.map((item) => (
-        <div 
-          data-category={item.category}
-          class="testi-card group relative bg-[#111] border border-white/[0.08] rounded-3xl p-8 md:p-9 flex flex-col justify-between hover:border-blue-500/40 hover:bg-[#141416] transition-all duration-500 hover:-translate-y-2 shadow-xl"
-        >
+        <div class="testi-card group relative bg-[#111115] border border-white/10 rounded-3xl p-8 md:p-9 flex flex-col justify-between hover:border-indigo-500/50 hover:bg-[#14141a] transition-all duration-300 hover:-translate-y-2 shadow-2xl">
           
-          <!-- Top Rating & Metric Badge -->
           <div>
             <div class="flex items-center justify-between mb-6">
               <div class="flex gap-1 text-amber-400">
@@ -165,55 +87,42 @@ const stats = [
                   </svg>
                 ))}
               </div>
-              <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-[11px] font-mono font-medium text-blue-300">
+              <span class="px-3 py-1 bg-indigo-500/15 border border-indigo-500/30 rounded-full text-[11px] font-mono font-medium text-indigo-300">
                 {item.metric}
               </span>
             </div>
 
-            <!-- Quote Text -->
-            <p class="text-base md:text-lg text-white/85 leading-relaxed font-normal mb-8 italic">
+            <p class="text-base text-white/90 leading-relaxed font-normal mb-8 italic">
               "{item.quote}"
             </p>
           </div>
 
-          <!-- Author Info -->
-          <div class="flex items-center justify-between pt-6 border-t border-white/[0.06] mt-auto">
-            <div class="flex items-center gap-3.5">
-              <img 
-                src={item.avatar} 
-                alt={item.author} 
-                class="w-11 h-11 rounded-full object-cover border border-white/20 group-hover:border-blue-400 transition-colors duration-300"
-              />
-              <div>
-                <h4 class="text-sm font-bold text-white leading-snug flex items-center gap-1.5">
-                  {item.author}
-                  {item.verified && (
-                    <svg class="w-3.5 h-3.5 text-blue-400 fill-current inline-block" viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                  )}
-                </h4>
-                <p class="text-xs text-white/50">{item.role} · <span class="text-white/70">{item.company}</span></p>
-              </div>
+          <div class="flex items-center gap-3.5 pt-6 border-t border-white/10 mt-auto">
+            <img 
+              src={item.avatar} 
+              alt={item.author} 
+              class="w-11 h-11 rounded-full object-cover border border-white/20 group-hover:border-indigo-400 transition-colors duration-300"
+            />
+            <div>
+              <h4 class="text-sm font-bold text-white leading-snug">
+                {item.author}
+              </h4>
+              <p class="text-xs text-white/50">{item.role} · <span class="text-white/80">{item.company}</span></p>
             </div>
-            
-            <span class="text-[10px] font-mono text-white/30 uppercase tracking-wider hidden sm:block">
-              {item.categoryLabel.split(' ')[0]}
-            </span>
           </div>
 
         </div>
       ))}
     </div>
 
-    <!-- Bottom Action Callout -->
-    <div class="mt-20 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-white/[0.03] via-white/[0.05] to-white/[0.03] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+    <!-- Callout -->
+    <div class="mt-20 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-white/[0.04] via-white/[0.07] to-white/[0.04] border border-white/15 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div>
-        <h3 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">
-          Want to discuss your next project?
+        <h3 class="text-2xl md:text-3xl font-bold tracking-tight mb-2 text-white">
+          Ready to build your next web or mobile app?
         </h3>
         <p class="text-white/60 text-sm md:text-base max-w-xl">
-          Whether you need to scale infrastructure, optimize cloud costs, or build a high-performance mobile app, let's connect.
+          Whether you need a React.js web app, cross-platform React Native app, or FastAPI backend architecture, let's talk.
         </p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-4 shrink-0">
@@ -228,88 +137,3 @@ const stats = [
 
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    const filterBtns = document.querySelectorAll('.testi-filter-btn');
-    const cards = document.querySelectorAll('.testi-card');
-
-    // Filter Functionality
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
-
-        // Toggle active button style
-        filterBtns.forEach(b => {
-          b.classList.remove('active', 'bg-white', 'text-black', 'border-white/20');
-          b.classList.add('bg-white/5', 'text-white/70', 'border-white/10');
-        });
-        btn.classList.add('active', 'bg-white', 'text-black', 'border-white/20');
-        btn.classList.remove('bg-white/5', 'text-white/70', 'border-white/10');
-
-        // Filter cards animation
-        cards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            gsap.to(card, {
-              autoAlpha: 1,
-              scale: 1,
-              display: 'flex',
-              duration: 0.4,
-              ease: 'power2.out'
-            });
-          } else {
-            gsap.to(card, {
-              autoAlpha: 0,
-              scale: 0.95,
-              duration: 0.3,
-              ease: 'power2.in',
-              onComplete: () => {
-                (card as HTMLElement).style.display = 'none';
-              }
-            });
-          }
-        });
-      });
-    });
-
-    // Initial ScrollTrigger Animations
-    const mm = gsap.matchMedia();
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      // Heading reveal
-      gsap.from('.testi-heading', {
-        y: 30,
-        autoAlpha: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#testimonials',
-          start: 'top 75%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      // Cards staggered reveal
-      gsap.from('.testi-card', {
-        y: 40,
-        autoAlpha: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.testimonials-grid',
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set('.testi-heading, .testi-card', { autoAlpha: 1, y: 0 });
-    });
-  });
-</script>

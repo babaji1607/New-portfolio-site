@@ -1,63 +1,46 @@
 ---
-// Premium Hero Component
+// Hero Component — Silent Video & Updated Portfolio Tagline
 ---
 <section id="home" class="relative w-full h-screen overflow-hidden bg-[#0a0a0a] text-white flex items-center justify-center">
   <!-- Progress bar -->
   <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-white z-50 origin-left scale-x-0 w-full pointer-events-none mix-blend-difference"></div>
 
-  <!-- Video Background -->
+  <!-- Video Background (Completely Muted) -->
   <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
     <video
       id="hero-video"
       autoplay
       loop
+      muted
       playsinline
-      class="w-full h-full object-cover scale-100 origin-center"
+      class="w-full h-full object-cover scale-100 origin-center opacity-40 pointer-events-none"
     >
       <source src="/hero-video.webm" type="video/webm" />
     </video>
   </div>
 
   <!-- Overlays -->
-  <!-- Dynamic Gradient -->
-  <div id="hero-gradient" class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-[#0a0a0a]/20 to-[#0a0a0a] z-0"></div>
-  <!-- Grain Overlay -->
+  <div id="hero-gradient" class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/40 to-[#0a0a0a] z-0"></div>
   <div class="absolute inset-0 opacity-[0.04] z-0 pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
-
-  <!-- Sound Toggle Control (Top Left) -->
-  <button id="sound-toggle" class="absolute top-6 left-6 z-30 flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium tracking-wider text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300" aria-label="Toggle Sound">
-    <span id="sound-icon" class="flex items-center">
-      <!-- Volume Up Icon (Active) -->
-      <svg id="icon-sound-on" class="w-4 h-4 text-green-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-      </svg>
-      <!-- Volume Off Icon -->
-      <svg id="icon-sound-off" class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
-      </svg>
-    </span>
-    <span id="sound-text">SOUND OFF</span>
-  </button>
 
   <!-- Content -->
   <div id="hero-content" class="relative z-10 flex flex-col items-center justify-center max-w-5xl mx-auto px-6 text-center pt-16">
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight flex flex-wrap justify-center gap-x-3 md:gap-x-4 gap-y-2 mb-6" aria-label="I build & deploy systems that scale with ease">
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight flex flex-wrap justify-center gap-x-3 md:gap-x-4 gap-y-2 mb-6" aria-label="I build web and mobile applications that scale">
       <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">I</span></span>
       <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">build</span></span>
       <span class="word-wrapper overflow-hidden pb-2 text-white/70"><span class="word inline-block invisible">&</span></span>
-      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">deploy</span></span>
-      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">systems</span></span>
-      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">that</span></span>
       <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">scale</span></span>
-      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-indigo-300 to-blue-400 font-serif italic">with</span></span>
-      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-indigo-400 to-blue-500 font-serif italic">ease.</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">web</span></span>
+      <span class="word-wrapper overflow-hidden pb-2 text-white/70"><span class="word inline-block invisible">&</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible">mobile</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-indigo-300 to-blue-400 font-serif italic">apps</span></span>
+      <span class="word-wrapper overflow-hidden pb-2"><span class="word inline-block invisible text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-indigo-400 to-blue-500 font-serif italic">effortlessly.</span></span>
     </h1>
 
     <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 mt-2 mb-10">
-      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide">DevOps Engineer</span>
-      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide">Mobile Developer</span>
-      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide">Cloud Architect</span>
+      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide text-indigo-300">Fullstack Developer</span>
+      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide text-blue-300">React & React Native</span>
+      <span class="role-badge invisible px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs md:text-sm font-medium tracking-wide text-teal-300">FastAPI & Python</span>
     </div>
 
     <!-- Direct Connection CTA Button -->
@@ -66,11 +49,45 @@
         href="#contact" 
         class="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-base tracking-wide hover:bg-neutral-200 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
       >
-        <span>Let's Connect Directly</span>
+        <span>Get in Touch</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </a>
+      <a 
+        href="#projects" 
+        class="group relative inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/10 text-white font-medium text-base tracking-wide border border-white/15 hover:bg-white/20 transition-all duration-300"
+      >
+        <span>View Live Projects</span>
+      </a>
+
+      <!-- GitHub & LinkedIn Badges -->
+      <div class="flex items-center gap-3 mt-2 md:mt-0">
+        <a
+          href="https://github.com/babaji1607"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-sm text-white font-medium transition-all duration-300"
+          aria-label="GitHub Profile"
+        >
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/mohit-ashliya/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/40 text-sm text-blue-300 font-medium transition-all duration-300"
+          aria-label="LinkedIn Profile"
+        >
+          <svg class="w-4 h-4 text-[#0077b5]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
     </div>
 
   </div>
@@ -94,62 +111,10 @@
 
     const mm = gsap.matchMedia();
 
-    // Video Audio Toggle & Default Play
+    // Ensure video is strictly muted
     const heroVideo = document.getElementById('hero-video') as HTMLVideoElement;
-    const soundToggle = document.getElementById('sound-toggle');
-    const iconSoundOn = document.getElementById('icon-sound-on');
-    const iconSoundOff = document.getElementById('icon-sound-off');
-    const soundText = document.getElementById('sound-text');
-
-    if (heroVideo && soundToggle) {
-      // Attempt unmuted play by default
-      heroVideo.muted = false;
-      const playPromise = heroVideo.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          // Unmuted autoplay succeeded
-          updateSoundUI(true);
-        }).catch(() => {
-          // Browser policy blocked unmuted autoplay -> fallback to muted until user clicks
-          heroVideo.muted = true;
-          heroVideo.play();
-          updateSoundUI(false);
-        });
-      }
-
-      function updateSoundUI(isUnmuted: boolean) {
-        if (isUnmuted) {
-          iconSoundOn?.classList.remove('hidden');
-          iconSoundOff?.classList.add('hidden');
-          if (soundText) soundText.textContent = "SOUND ON";
-        } else {
-          iconSoundOn?.classList.add('hidden');
-          iconSoundOff?.classList.remove('hidden');
-          if (soundText) soundText.textContent = "SOUND OFF";
-        }
-      }
-
-      soundToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        heroVideo.muted = !heroVideo.muted;
-        if (heroVideo.muted) {
-          updateSoundUI(false);
-        } else {
-          heroVideo.play();
-          updateSoundUI(true);
-        }
-      });
-
-      // Enable sound on first interaction anywhere if currently muted
-      const enableAudioOnUserGesture = () => {
-        if (heroVideo.muted) {
-          heroVideo.muted = false;
-          heroVideo.play().then(() => updateSoundUI(true)).catch(() => {});
-        }
-        window.removeEventListener('click', enableAudioOnUserGesture);
-      };
-      window.addEventListener('click', enableAudioOnUserGesture, { once: true });
+    if (heroVideo) {
+      heroVideo.muted = true;
     }
 
     mm.add({
@@ -219,7 +184,6 @@
         gsap.set(".role-badge", { autoAlpha: 1, y: 0 });
         gsap.set(".hero-cta-wrapper", { autoAlpha: 1, y: 0 });
         
-        // Simple fade on scroll
         gsap.to("#hero-content", {
           autoAlpha: 0,
           ease: "none",

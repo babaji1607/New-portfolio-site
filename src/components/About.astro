@@ -1,66 +1,92 @@
 ---
-// src/components/About.astro — Dark theme, no timeline
+// src/components/About.astro — Updated with Mohit Ashliya's Resume Info
 ---
 <section id="about" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
 
     <!-- Left: Image & Floating Cards -->
     <div class="w-full lg:w-1/2 relative">
-      <div class="about-image-wrapper relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#111]">
-        <img src="/archperson-g_m_gYi2.png" alt="Profile" class="about-image w-full h-[115%] object-cover absolute top-[-7%] left-0" />
-        <!-- Subtle overlay for depth -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-transparent"></div>
+      <div class="about-image-wrapper relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#111] border border-white/10">
+        <img src="/archperson-g_m_gYi2.png" alt="Mohit Ashliya" class="about-image w-full h-[115%] object-cover absolute top-[-7%] left-0" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent"></div>
       </div>
 
-      <!-- Floating Cards -->
+      <!-- Floating Stats Cards -->
       <div class="floating-card absolute top-10 -left-3 md:-left-6 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 flex flex-col items-center z-10">
-        <span class="font-bold text-sm text-white">AWS</span>
-        <span class="text-xs text-white/50">Certified</span>
+        <span class="font-bold text-sm text-white">400–500</span>
+        <span class="text-xs text-white/60">Daily Users</span>
       </div>
       <div class="floating-card absolute bottom-20 -right-3 md:-right-6 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 flex flex-col items-center z-10">
-        <span class="font-bold text-sm text-white">50+</span>
-        <span class="text-xs text-white/50">Projects</span>
+        <span class="font-bold text-sm text-white">40K+</span>
+        <span class="text-xs text-white/60">YT Learners</span>
       </div>
       <div class="floating-card absolute top-1/2 -translate-y-1/2 -left-3 md:-left-8 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 flex flex-col items-center z-10">
-        <span class="font-bold text-sm text-white">3+</span>
-        <span class="text-xs text-white/50">Years Exp</span>
+        <span class="font-bold text-sm text-white">2+</span>
+        <span class="text-xs text-white/60">Years Exp</span>
       </div>
     </div>
 
-    <!-- Right: Text Content -->
+    <!-- Right: Text Content & Education -->
     <div class="w-full lg:w-1/2 flex flex-col justify-center">
       <div class="about-text-content">
-        <span class="inline-block text-sm font-medium text-white/40 mb-4 tracking-wide">About me</span>
-        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8 text-white">
-          Driven by curiosity and a love for robust architecture.
+        <span class="inline-block text-xs font-mono text-indigo-400 uppercase tracking-widest mb-3">About Mohit Ashliya</span>
+        <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6 text-white">
+          Fullstack Web & Mobile Application Developer.
         </h2>
 
-        <div class="space-y-5 text-base md:text-lg text-white/60 leading-relaxed mb-12">
+        <div class="space-y-4 text-base md:text-lg text-white/70 leading-relaxed mb-8">
           <p>
-            As a DevOps and Mobile App Developer, I specialize in bridging the gap between scalable infrastructure and seamless user experiences.
+            I specialize in crafting high-performance React.js web apps, cross-platform React Native mobile applications, and resilient FastAPI backends.
           </p>
           <p>
-            I believe that great software is built on a foundation of reliability, automation, and intuitive design.
+            Over the past 2+ years, I have architected and launched production applications serving 400–500+ daily users — ranging from Community Gym Booking systems to automated School ERP platforms with real-time geo-tracing.
+          </p>
+          <p>
+            Beyond shipping software, I am passionate about developer education, having mentored over 40K+ learners through interactive coding tutorials.
           </p>
         </div>
 
-        <div class="grid grid-cols-2 gap-6 mb-12">
+        <!-- Details Grid -->
+        <div class="grid grid-cols-2 gap-6 mb-8 pt-6 border-t border-white/10">
           <div>
-            <h4 class="text-sm text-white/30 mb-1">Location</h4>
-            <p class="font-medium text-white">San Francisco, CA</p>
+            <h4 class="text-xs font-mono text-white/40 uppercase mb-1">Primary Stack</h4>
+            <p class="font-medium text-white text-sm md:text-base">React.js, React Native, FastAPI, Rust/Tauri</p>
           </div>
           <div>
-            <h4 class="text-sm text-white/30 mb-1">Status</h4>
-            <p class="font-medium text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Available for work
+            <h4 class="text-xs font-mono text-white/40 uppercase mb-1">Status</h4>
+            <p class="font-medium text-white flex items-center gap-2 text-sm md:text-base">
+              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Available for Hire & Projects
             </p>
           </div>
         </div>
+
+        <!-- Education Credentials -->
+        <div class="space-y-3 mb-8">
+          <h4 class="text-xs font-mono text-indigo-400 uppercase tracking-wider">Education</h4>
+          <div class="flex flex-col gap-2.5">
+            <div class="bg-[#111] border border-white/[0.08] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <h5 class="text-sm font-bold text-white">Master of Computer Applications (MCA)</h5>
+                <p class="text-xs text-white/50">Lovely Professional University (LPU)</p>
+              </div>
+              <span class="text-xs font-mono text-white/40 px-2.5 py-1 rounded bg-white/5">2022–2024</span>
+            </div>
+
+            <div class="bg-[#111] border border-white/[0.08] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <h5 class="text-sm font-bold text-white">Bachelor of Computer Applications (BCA)</h5>
+                <p class="text-xs text-white/50">S.S. Jain Subodh College, Jaipur</p>
+              </div>
+              <span class="text-xs font-mono text-white/40 px-2.5 py-1 rounded bg-white/5">2019–2022</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Philosophy Quote -->
-      <blockquote class="about-quote text-2xl md:text-3xl font-light italic text-white/70">
-        "Build once, deploy everywhere."
+      <!-- Quote -->
+      <blockquote class="about-quote text-xl md:text-2xl font-light italic text-white/70 border-l-2 border-indigo-500 pl-4">
+        "Building user-friendly solutions that scale gracefully under real-world traffic."
       </blockquote>
     </div>
   </div>
@@ -77,7 +103,6 @@
       const img = document.querySelector('.about-image');
       const imgWrapper = document.querySelector('.about-image-wrapper');
 
-      // Image parallax only
       if (img && imgWrapper) {
         gsap.to(img, {
           y: '15%',
@@ -91,7 +116,6 @@
         });
       }
 
-      // Text — subtle slide up
       gsap.from('.about-text-content', {
         y: 20,
         duration: 0.7,
@@ -103,19 +127,6 @@
         }
       });
 
-      // Quote — gentle slide
-      gsap.from('.about-quote', {
-        x: -15,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.about-quote',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      // Floating cards — gentle bob
       const cards = gsap.utils.toArray('.floating-card');
       cards.forEach((card, i) => {
         gsap.to(card, {

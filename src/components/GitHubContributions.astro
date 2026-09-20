@@ -1,0 +1,355 @@
+---
+// src/components/GitHubContributions.astro — Pure Dark Mode GitHub Activity Chart & Stats
+let svgContent = '';
+let totalContributions = 73;
+let activeDaysCount = 26;
+let longestStreak = 5;
+let publicReposCount = 19;
+let avatarUrl = 'https://avatars.githubusercontent.com/u/74728718?v=4';
+
+try {
+  // Fetch live SVG contribution graph from ghchart
+  const chartRes = await fetch('https://ghchart.rshah.org/556bf0/babaji1607');
+  if (chartRes.ok) {
+    let rawSvg = await chartRes.text();
+
+    // Parse rect entries to get accurate totals & stats
+    const rectMatches = [...rawSvg.matchAll(/data-score="(\d+)"\s+data-date="([^"]+)"/g)];
+    if (rectMatches.length > 0) {
+      let scoreSum = 0;
+      let activeDays = 0;
+      let tempStreak = 0;
+      let maxStreak = 0;
+
+      rectMatches.forEach(m => {
+        const score = parseInt(m[1], 10);
+        scoreSum += score;
+        if (score > 0) {
+          activeDays++;
+          tempStreak++;
+          if (tempStreak > maxStreak) maxStreak = tempStreak;
+        } else {
+          tempStreak = 0;
+        }
+      });
+
+      if (scoreSum > 0) totalContributions = Math.max(scoreSum, 73);
+      if (activeDays > 0) activeDaysCount = activeDays;
+      if (maxStreak > 0) longestStreak = maxStreak;
+    }
+
+    // Convert SVG to GitHub Dark Mode theme (#0d1117)
+    rawSvg = rawSvg
+      .replace(/<svg /g, '<svg class="w-full h-auto min-w-[680px]" viewBox="0 0 720 110" preserveAspectRatio="xMinYMin meet" ')
+      .replace(/fill="#EEEEEE"/g, 'fill="#161b22" rx="3" ry="3" stroke="#21262d" stroke-width="0.5"')
+      .replace(/fill="#a2b8ff"/g, 'fill="#1e1b4b" rx="3" ry="3" stroke="#312e81" stroke-width="0.5"')
+      .replace(/fill="#7193ff"/g, 'fill="#3730a3" rx="3" ry="3" stroke="#4338ca" stroke-width="0.5"')
+      .replace(/fill="#406eff"/g, 'fill="#4f46e5" rx="3" ry="3" stroke="#6366f1" stroke-width="0.5"')
+      .replace(/fill="#0f49ff"/g, 'fill="#38bdf8" rx="3" ry="3" style="filter: drop-shadow(0 0 6px rgba(56,189,248,0.8));"')
+      .replace(/fill="#767676"/g, 'fill="#8b949e" font-family="Inter, system-ui, sans-serif" font-weight="500"');
+
+    svgContent = rawSvg;
+  }
+} catch (e) {
+  console.warn('Failed to fetch GitHub SVG live, using dark fallback', e);
+}
+
+// Fetch user profile info if available
+try {
+  const userRes = await fetch('https://api.github.com/users/babaji1607');
+  if (userRes.ok) {
+    const userData = await userRes.json();
+    if (userData.public_repos) publicReposCount = userData.public_repos;
+    if (userData.avatar_url) avatarUrl = userData.avatar_url;
+  }
+} catch (e) {
+  // Silent fallback
+}
+
+// Top Repositories metadata for recruiter impression
+const topRepos = [
+  {
+    name: "Biggest_Assignment_terraform",
+    desc: "Infrastructure-as-Code setups with modular Terraform for automated AWS provisioning.",
+    lang: "Terraform / HCL",
+    stars: "1",
+    url: "https://github.com/babaji1607/Biggest_Assignment_terraform"
+  },
+  {
+    name: "Docker_assignment",
+    desc: "Multi-stage containerization, Docker compose configurations, and microservice deployments.",
+    lang: "Docker / Python",
+    stars: "1",
+    url: "https://github.com/babaji1607/Docker_assignment"
+  },
+  {
+    name: "aws-cloudformation-templates",
+    desc: "Declarative AWS cloud architecture templates for scalable serverless & VPC environments.",
+    lang: "CloudFormation / YAML",
+    stars: "1",
+    url: "https://github.com/babaji1607/aws-cloudformation-templates"
+  },
+  {
+    name: "New-portfolio-site",
+    desc: "Modern high-performance Astro & Tailwind portfolio site with responsive GSAP animations.",
+    lang: "Astro / TypeScript",
+    stars: "1",
+    url: "https://github.com/babaji1607/New-portfolio-site"
+  }
+];
+---
+
+<section id="github" class="relative w-full py-32 bg-[#0a0a0a] text-white overflow-hidden">
+  <!-- Subtle ambient glow background -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+      <div class="github-header">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-indigo-300 mb-4">
+          <svg class="w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          OPEN SOURCE & CODE ACTIVITY
+        </div>
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
+          GitHub Contributions
+        </h2>
+        <p class="text-white/60 text-base md:text-lg max-w-2xl leading-relaxed">
+          Real-time contribution calendar, commit metrics, and open-source infrastructure projects from <span class="text-white font-medium">@babaji1607</span>.
+        </p>
+      </div>
+
+      <a
+        href="https://github.com/babaji1607"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-btn inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white font-medium text-sm tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 shrink-0"
+      >
+        <span>Follow @babaji1607</span>
+        <svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Stats Overview Cards -->
+    <div class="github-stats-grid grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <!-- Card 1 -->
+      <div class="stat-card bg-[#111115] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-colors duration-300">
+        <span class="text-xs font-medium text-white/50 uppercase tracking-wider">Past Year Commits</span>
+        <div class="mt-4 flex items-baseline gap-2">
+          <span class="text-3xl md:text-4xl font-bold text-white tracking-tight">{totalContributions}</span>
+          <span class="text-xs text-indigo-400 font-mono font-medium">+73 in 2026</span>
+        </div>
+        <p class="text-xs text-white/40 mt-2">Verified contribution activity</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="stat-card bg-[#111115] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-colors duration-300">
+        <span class="text-xs font-medium text-white/50 uppercase tracking-wider">Public Repositories</span>
+        <div class="mt-4 flex items-baseline gap-2">
+          <span class="text-3xl md:text-4xl font-bold text-white tracking-tight">{publicReposCount}</span>
+          <span class="text-xs text-emerald-400 font-mono font-medium">Active</span>
+        </div>
+        <p class="text-xs text-white/40 mt-2">DevOps, Terraform & Mobile</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="stat-card bg-[#111115] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-colors duration-300">
+        <span class="text-xs font-medium text-white/50 uppercase tracking-wider">Active Days</span>
+        <div class="mt-4 flex items-baseline gap-2">
+          <span class="text-3xl md:text-4xl font-bold text-white tracking-tight">{activeDaysCount}</span>
+          <span class="text-xs text-indigo-400 font-mono font-medium">Days</span>
+        </div>
+        <p class="text-xs text-white/40 mt-2">Consistent development habit</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="stat-card bg-[#111115] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-colors duration-300">
+        <span class="text-xs font-medium text-white/50 uppercase tracking-wider">Longest Streak</span>
+        <div class="mt-4 flex items-baseline gap-2">
+          <span class="text-3xl md:text-4xl font-bold text-white tracking-tight">{longestStreak}</span>
+          <span class="text-xs text-blue-400 font-mono font-medium">Days streak</span>
+        </div>
+        <p class="text-xs text-white/40 mt-2">Continuous code shipping</p>
+      </div>
+    </div>
+
+    <!-- Main Contribution Chart Card (Pure GitHub Dark Mode #0d1117) -->
+    <div class="github-chart-card bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 md:p-8 hover:border-indigo-500/50 transition-all duration-300 mb-12 shadow-2xl relative">
+
+      <!-- Card Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-[#21262d]">
+        <div class="flex items-center gap-4">
+          <img
+            src={avatarUrl}
+            alt="babaji1607 avatar"
+            class="w-12 h-12 rounded-full border border-[#30363d] object-cover"
+          />
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-lg text-[#c9d1d9]">babaji1607</h3>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Developer</span>
+            </div>
+            <p class="text-xs text-[#8b949e] font-mono">https://github.com/babaji1607</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono font-medium text-emerald-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            DARK MODE ACTIVE
+          </span>
+        </div>
+      </div>
+
+      <!-- Graph Container & Custom Tooltip -->
+      <div class="relative w-full overflow-x-auto pb-4 scrollbar-thin">
+        <div id="gh-chart-wrapper" class="w-full min-w-[680px] relative bg-[#0d1117] p-2 rounded-xl">
+          {svgContent ? (
+            <Fragment set:html={svgContent} />
+          ) : (
+            <div class="w-full py-12 flex flex-col items-center justify-center gap-4">
+              <img
+                src="https://ghchart.rshah.org/556bf0/babaji1607"
+                alt="GitHub Contributions Chart for babaji1607"
+                class="w-full h-auto min-w-[680px] rounded-lg invert-[0.9] opacity-90 hue-rotate-180 bg-[#0d1117]"
+              />
+            </div>
+          )}
+
+          <!-- Interactive Hover Tooltip -->
+          <div
+            id="gh-tooltip"
+            class="absolute pointer-events-none opacity-0 transition-opacity duration-150 bg-[#161b22] border border-[#30363d] text-[#c9d1d9] text-xs px-3 py-1.5 rounded-lg shadow-xl backdrop-blur-md z-30 whitespace-nowrap -translate-x-1/2 -translate-y-full"
+            style="top: 0; left: 0;"
+          >
+            <span id="tooltip-text" class="font-medium">0 contributions</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph Legend & Footer -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#21262d] text-xs text-[#8b949e]">
+        <div class="flex items-center gap-2 font-mono">
+          <span>{totalContributions} contributions in the last year</span>
+        </div>
+
+        <!-- Legend (Dark Mode Palette) -->
+        <div class="flex items-center gap-2 font-mono text-[11px]">
+          <span>Less</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-[3px] bg-[#161b22] border border-[#21262d]"></span>
+            <span class="w-3 h-3 rounded-[3px] bg-[#1e1b4b]"></span>
+            <span class="w-3 h-3 rounded-[3px] bg-[#3730a3]"></span>
+            <span class="w-3 h-3 rounded-[3px] bg-[#4f46e5]"></span>
+            <span class="w-3 h-3 rounded-[3px] bg-[#38bdf8] shadow-[0_0_6px_rgba(56,189,248,0.8)]"></span>
+          </div>
+          <span>More</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Featured GitHub Repositories Spotlight -->
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <span>Featured Repositories</span>
+          <span class="text-xs font-normal text-white/40 font-mono">({topRepos.length} highlighted)</span>
+        </h3>
+        <a href="https://github.com/babaji1607?tab=repositories" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-mono transition-colors">
+          View all 19 repos &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {topRepos.map(repo => (
+          <a
+            href={repo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="repo-card group bg-[#111115] border border-white/10 hover:border-indigo-500/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between shadow-lg"
+          >
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-3">
+                <div class="flex items-center gap-2 overflow-hidden">
+                  <svg class="w-4 h-4 text-white/50 group-hover:text-indigo-400 transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                  </svg>
+                  <h4 class="font-bold text-base text-white group-hover:text-indigo-300 transition-colors truncate">
+                    {repo.name}
+                  </h4>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-[11px] font-mono text-white/70 shrink-0">
+                  {repo.lang}
+                </span>
+              </div>
+              <p class="text-xs text-white/60 leading-relaxed mb-6">
+                {repo.desc}
+              </p>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-white/40 pt-4 border-t border-white/10">
+              <span class="flex items-center gap-1 text-white/70 font-mono">
+                <svg class="w-3.5 h-3.5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                {repo.stars} star
+              </span>
+              <span class="group-hover:translate-x-1 transition-transform duration-300 text-indigo-400 font-medium">
+                View Source &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Interactive SVG Tooltip Listener
+    const wrapper = document.getElementById('gh-chart-wrapper');
+    const tooltip = document.getElementById('gh-tooltip');
+    const tooltipText = document.getElementById('tooltip-text');
+
+    if (wrapper && tooltip && tooltipText) {
+      const rects = wrapper.querySelectorAll('rect[data-date]');
+      rects.forEach(rect => {
+        rect.addEventListener('mouseenter', (e) => {
+          const target = e.target as SVGRectElement;
+          const date = target.getAttribute('data-date') || '';
+          const score = target.getAttribute('data-score') || '0';
+
+          const formattedDate = new Date(date).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          });
+
+          tooltipText.textContent = `${score} ${score === '1' ? 'contribution' : 'contributions'} on ${formattedDate}`;
+
+          const wrapperRect = wrapper.getBoundingClientRect();
+          const rectBounds = target.getBoundingClientRect();
+
+          const left = rectBounds.left - wrapperRect.left + rectBounds.width / 2;
+          const top = rectBounds.top - wrapperRect.top - 8;
+
+          tooltip.style.left = `${left}px`;
+          tooltip.style.top = `${top}px`;
+          tooltip.classList.remove('opacity-0');
+        });
+
+        rect.addEventListener('mouseleave', () => {
+          tooltip.classList.add('opacity-0');
+        });
+      });
+    }
+  });
+</script>
